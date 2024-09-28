@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fragrance Chatbot</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+</head>
+<body>
+    <h1>Ask the Fragrance Expert</h1>
+
+    <form id="question-form" method="POST">
+        <label for="question">Your Question:</label><br>
+        <input type="text" id="question" name="question"><br><br>
+
+        <input type="checkbox" id="send_email" name="send_email" value="yes">
+        <label for="send_email">Send me the response via email</label><br><br>
+
+        <div id="email-container" style="display:none;">
+            <label for="email">Your Email:</label><br>
+            <input type="email" id="email" name="email"><br><br>
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+
+    <div id="response-container">
+        {% if response %}
+            <h2>Response:</h2>
+            <p>{{ response }}</p>
+        {% endif %}
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $("#send_email").change(function() {
+                if ($(this).is(":checked")) {
+                    $("#email-container").show();
+                } else {
+                    $("#email-container").hide();
+                }
+            });
+
+            $("#question-form").submit(function(event) {
+                event.preventDefault();
+
+                var question = $("#question").val();
+                var email = $("#send_email").is(":checked") ? $("#email").val() : ""; // Get email only if checkbox is checked
+
+                $.ajax({
+                    type: "POST",
+                    url: "/get_response",
+                    data: { question: question, email: email },
+                    success: function(response) {
+                        $("#response-container").html("<h2>Response:</h2><p>" + response + "</p>");
+                    },
+                    error: function(error) {
+                        console.error("Error fetching response:", error);
+                        $("#response-container").html("<p>An error occurred. Please try again later.</p>");
+                    }
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>
+
