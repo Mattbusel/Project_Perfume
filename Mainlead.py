@@ -1,8 +1,10 @@
 import http.client
 import json
 import smtplib
+import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import auto_py_to_exe
 
 conn = http.client.HTTPSConnection("chatgpt-42.p.rapidapi.com")
 
@@ -40,9 +42,13 @@ def chat_about_fragrances(question):
         return None  # Return None in case of an error
 
 def send_email(recipient_email, subject, body):
-    # Set up your email credentials
-    sender_email = "zmanfungle@gmail.com"  # Replace with your email
-    password = "Matter13@"  # Replace with your password
+    # Retrieve email credentials from environment variables
+    sender_email = os.environ.get("EMAIL_ADDRESS1")  # Use the correct environment variable name
+    password = os.environ.get("EMAIL_PASSWORD1")  # Use the correct environment variable name
+
+    if not sender_email or not password:
+        print("Error: Email credentials not found in environment variables.")
+        return
 
     # Create the email message
     msg = MIMEMultipart()
@@ -83,43 +89,3 @@ chat_about_fragrances("Can you recommend a fragrance for a summer evening date?"
 
 # Get user input and continue chatting
 get_user_question()
-
-import http.client
-import json
-import smtplib
-import os
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
-
-# ... (rest of your code)
-
-def send_email(recipient_email, subject, body):
-    # Retrieve email credentials from environment variables
-    sender_email = os.environ.get("EMAIL_ADDRESS1")
-    password = os.environ.get("EMAIL_PASSWORD1")
-
-
-    if not sender_email or not password:
-        print("Error: Email credentials not found in environment variables.")
-        return
-
-    # Create the email message
-    msg = MIMEMultipart()
-    msg['From'] = sender_email
-    msg['To'] = recipient_email
-    msg['Subject'] = subject
-    msg.attach(MIMEText(body, 'plain'))
-
-    # Send the email
-    try:
-        server = smtplib.SMTP('smtp.gmail.com', 587)  # Adjust if using a different email provider
-        server.starttls()
-        server.login(sender_email, password)
-        text = msg.as_string()
-        server.sendmail(sender_email, recipient_email, text)
-        server.quit()
-        print("Email sent successfully!")
-    except Exception as e:
-        print("Error sending email:", e)
-
-# ... (rest of your code, including get_user_question)
