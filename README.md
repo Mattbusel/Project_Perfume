@@ -1,4 +1,4 @@
-# Fragrance Chatbot with Email Functionality
+# Fragrance Chatbot with Email Functionality https://store.askfragranceai.com/
 
 This project is a Python-based web application that allows you to interact with a fragrance expert AI and get recommendations on various fragrances. It also provides the option to email the responses.
 
