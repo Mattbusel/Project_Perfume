@@ -47,7 +47,10 @@ export FLASK_APP=Mainlead.py  # On macOS/Linux
 flask run
 Use code with caution.
 
-Access the Web Application
 
-Open your web browser and go to http://127.0.0.1:5000/
+Monetization
+PayPal Donations (Implemented): Allow users to support the development of the AI through PayPal donations.
+Google AdSense Ads (Implemented): Display targeted ads to generate additional revenue.
+
+
 
