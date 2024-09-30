@@ -18,7 +18,7 @@ def chat_about_fragrances(question):
     }
 
     headers = {
-        'x-rapidapi-key': "abf60d6769msh5066b8a2895cb64p1e58bajsn326511ef8429",
+        'x-rapidapi-key': 
         'x-rapidapi-host': "chatgpt-42.p.rapidapi.com",
         'Content-Type': "application/json"
     }
