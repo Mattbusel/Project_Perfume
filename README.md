@@ -35,7 +35,7 @@ Required Libraries: requests, smtplib, Flask
 API Key: from a service like RapidAPI
 Email Credentials: (if using email functionality)
 How to Run (updated)
-Set Up Environment Variables (Optional):
+Set Up Environment Variables (Optional):.
 
 If using email functionality, set EMAIL_ADDRESS1 and EMAIL_PASSWORD1
 Run the Script:
