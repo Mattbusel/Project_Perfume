@@ -18,7 +18,7 @@ A Flask web application has been set up with routes to handle user interactions 
 An index.html template provides the basic user interface for the chatbot.
 Dynamic Response Display (Pending):
 
-AJAX functionality is yet to be implemented to update the chatbot's responses without requiring a full page reload.
+AJAX functionality is yet to be implemented to update the chatbot's responses without requiring a full page reloa.
 Error Handling (Partially Implemented):
 
 Basic error handling is in place for API response issues and missing email credentials.
