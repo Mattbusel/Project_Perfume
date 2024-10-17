@@ -29,7 +29,7 @@ def chat_about_fragrances(question):
 
     response = json.loads(data.decode("utf-8"))
 
-    # Print the raw response for debugging (optiona)
+    # Print the raw response for debugging (optional)
     print("Raw API response:", response)
 
     try:
