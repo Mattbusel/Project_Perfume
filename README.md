@@ -45,7 +45,7 @@ Bash
 set FLASK_APP=Mainlead.py  # On Windows
 export FLASK_APP=Mainlead.py  # On macOS/Linux
 flask run
-Use code with caution.
+Us code with caution.
 
 
 Monetization
