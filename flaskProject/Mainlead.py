@@ -28,7 +28,7 @@ def index():
             subject = "Fragrance Recommendation"
             send_email(email, subject, response)
 
-        return render_template('index.html', response=response)
+        return render_template('index.html', response=respons)
     else:
         return render_template('index.html')
 
