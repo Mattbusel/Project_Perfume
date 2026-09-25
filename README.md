@@ -1,56 +1,43 @@
-# Fragrance Chatbot with Email Functionality www.askfragranceai.com
+# Project Perfume: fragrance chatbot
 
-This project is a Python-based web application that allows you to interact with a fragrance expert AI and get recommendations on various fragrances. It also provides the option to email the responses.
+A small 2024 Python prototype of a fragrance-expert chatbot. You ask a question ("a fragrance for a summer evening date?"), it sends the question to a GPT-4 endpoint on RapidAPI with a fragrance-expert system prompt, prints the answer, and can email it to you over Gmail SMTP.
 
-Features
-Chatbot Interaction (Implemented):
+This was an early experiment toward a site called Ask Fragrance AI. The command-line version works; the Flask web version was started and never finished.
 
-Ask questions about fragrances through a web interface.
-Receive informative and helpful responses from the AI fragrance expert.
-Email Functionality (Implemented):
+## Entry points
 
-Option to send the chatbot's responses via email directly from the web interface.
-The user can provide their email address to receive the response.
-Progress
-Basic Flask App (Implemented):
+| Path | State |
+|---|---|
+| `flaskProject/Project 2/sven.py` | Complete command-line chatbot: two sample questions, then an interactive loop with an optional email step. Credentials are set inside the file. |
+| `Mainlead.py` | Same chatbot, reading email credentials from `EMAIL_ADDRESS1` / `EMAIL_PASSWORD1`. The RapidAPI key line is blank, so it does not parse until you add a key. |
+| `flaskProject/Mainlead.py` | Start of a Flask web app. Function bodies are placeholders, so it does not run. |
+| `flaskProject/templates/index.html` | Form UI for the web app (question, optional email, jQuery AJAX to a `/get_response` route that does not exist yet). |
+| `flaskProject/ref.py` | Env-var based `send_email` helper. |
+| `flaskProject/Project 2/build/`, `Mainlead.spec` | PyInstaller build output. |
 
-A Flask web application has been set up with routes to handle user interactions and AJAX requests.
-An index.html template provides the basic user interface for the chatbot.
-Dynamic Response Display (Pending):
+## Run the command-line version
 
-AJAX functionality is yet to be implemented to update the chatbot's responses without requiring a full page reloa.
-Error Handling (Partially Implemented):
+Requires Python 3 and a RapidAPI subscription to the `chatgpt-42` API. Everything else is standard library.
 
-Basic error handling is in place for API response issues and missing email credentials.
-More robust error handling for other potential issues can be added in the future.
-Next Steps
-Implement AJAX: Add AJAX functionality to the index.html template and Flask routes to provide a smoother and more interactive user experience.
-Enhance Error Handling: Improve error handling to provide more informative feedback to the user in case of various errors.
-Styling and UI/UX Improvements: Use CSS and potentially JavaScript to enhance the visual appearance and user experience of the chatbot interface.
-Testing and Debugging: Thoroughly test the application for different scenarios and fix any bugs or issues.
-Deployment: Once the application is fully functional and tested, deploy it to a web server so it can be accessed publicly.
-Prerequisites (unchanged)
-Python 3.x
-Required Libraries: requests, smtplib, Flask
-API Key: from a service like RapidAPI
-Email Credentials: (if using email functionality)
-How to Run (updated)
-Set Up Environment Variables (Optional):.
+1. In `Mainlead.py`, set the `x-rapidapi-key` header to your key.
+2. Set email credentials if you want the email option (for Gmail, use an app password):
 
-If using email functionality, set EMAIL_ADDRESS1 and EMAIL_PASSWORD1
-Run the Script:
+   ```bash
+   export EMAIL_ADDRESS1=you@gmail.com
+   export EMAIL_PASSWORD1=your_app_password
+   ```
 
-Execute the script from your terminal:
-Bash
-set FLASK_APP=Mainlead.py  # On Windows
-export FLASK_APP=Mainlead.py  # On macOS/Linux
-flask run
-Us code with caution.
+3. Remove the `import auto_py_to_exe` line (a packaging tool, not needed to run) or `pip install auto-py-to-exe`, then run:
 
+   ```bash
+   python Mainlead.py
+   ```
 
-Monetization
-PayPal Donations (Implemented): Allow users to support the development of the AI through PayPal donations.
-Google AdSense Ads (Implemented): Display targeted ads to generate additional revenue.
+Type `exit` to quit.
 
+## Limitations
 
-
+- Depends on a third-party RapidAPI wrapper (`chatgpt-42.p.rapidapi.com`, `/gpt4`); the response is read from its `result` field.
+- The HTTPS connection is created once at import and reused.
+- The SMTP host is hard-coded to Gmail.
+- The Flask web version is unfinished (see the table above).
